@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel" *ngIf="action=='modify' else create">Modificar</h1>
+    <ng-template #create>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar</h1>
+    </ng-template>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nombre del Curso</label>
+        <input type="text" class="form-control" [(ngModel)]="name" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Duración</label>
+        <input type="number" class="form-control" [(ngModel)]="duration">
+    </div>
+    <div class="mb-3">
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="level">
+            <option selected>Selecciona un Nivel</option>
+            <option *ngFor="let level of levels" [value]="level">{{level}}</option>
+        </select>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateCourse()"
+        *ngIf="action == 'modify' else btnCreate">Save changes</button>
+    <ng-template #btnCreate><button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+            (click)="addCourse()">Save changes</button></ng-template>
+</div>
