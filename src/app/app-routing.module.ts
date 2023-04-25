@@ -4,10 +4,10 @@ import { ListaCursosComponent } from './lista-cursos/lista-cursos.component';
 import { DetalleCursoComponent } from './detalle-curso/detalle-curso.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/courses', pathMatch: 'full' },
-    { path: 'courses', component: ListaCursosComponent },
-    { path: 'detalle-curso', component: DetalleCursoComponent },
-    { path: '**', redirectTo: '/courses', pathMatch: 'full' }
+    { path: '', component: ListaCursosComponent, children: [
+        { path: 'alta', component: DetalleCursoComponent },
+        { path: 'modify/:id', component: DetalleCursoComponent }
+    ]}
 ];
 
 @NgModule({

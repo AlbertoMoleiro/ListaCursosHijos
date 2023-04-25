@@ -13,7 +13,6 @@ import { Course, Level } from '../_models/Course';
 })
 export class DetalleCursoComponent {
 
-    action: string | null = "";
     id: number = 0;
     course: any;
     name: string = 'Name';
@@ -22,23 +21,21 @@ export class DetalleCursoComponent {
 
     levels: Level[] = Object.values(Level);
 
+    sub: any;
 
     constructor(private route: ActivatedRoute, private coursesService: CoursesService, private router: Router) { }
-
     ngOnInit(): void {
-        this.route.queryParamMap.subscribe((params: ParamMap) => {
-            this.action = params.get('action');
+        this.sub = this.route.paramMap;
+        this.sub.subscribe((params: ParamMap) => {
             this.id = Number(params.get('id'));
-
-            if (this.action === 'modify') {
+            if (this.id != 0) {
                 this.course = this.coursesService.getCourseById(Number(this.id));
                 this.name = this.course.name;
                 this.duration = this.course.duration;
                 this.level = this.course.level;
             }
-
-
-        });
+        }
+        );
     }
 
 
@@ -47,14 +44,13 @@ export class DetalleCursoComponent {
         this.course.duration = this.duration;
         this.course.level = this.level;
         this.coursesService.updateCourse(this.course);
-        this.router.navigate(['/lista-cursos']);
     }
 
     addCourse(): void {
-
         this.coursesService.addCourse(new Course(this.name, this.duration, this.level));
-        this.router.navigate(['/lista-cursos']);
-
+    }
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 
 }

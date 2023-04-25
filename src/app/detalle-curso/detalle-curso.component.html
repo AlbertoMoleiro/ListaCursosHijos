@@ -1,9 +1,9 @@
 <div class="modal-header">
-    <h1 class="modal-title fs-5" id="exampleModalLabel" *ngIf="action=='modify' else create">Modificar</h1>
+    <h1 class="modal-title fs-5" id="exampleModalLabel" *ngIf="id==0 else create">Modificar</h1>
     <ng-template #create>
         <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar</h1>
     </ng-template>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" routerLink=""></button>
 </div>
 <div class="modal-body">
     <div class="mb-3">
@@ -22,9 +22,9 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" routerLink="">Close</button>
     <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateCourse()"
-        *ngIf="action == 'modify' else btnCreate">Save changes</button>
+        *ngIf="id!=0 else btnCreate" routerLink="">Save changes</button>
     <ng-template #btnCreate><button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-            (click)="addCourse()">Save changes</button></ng-template>
+            (click)="addCourse()" routerLink="">Create Course</button></ng-template>
 </div>

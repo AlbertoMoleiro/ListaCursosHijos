@@ -11,15 +11,18 @@ export class ListaCursosComponent {
     courses: Course[] = [];
 
     constructor(private coursesService: CoursesService, private router: Router) {
-       
+
     }
     ngOnInit(): void {
         this.courses = this.coursesService.courses;
     }
 
-    goDetalle(id: number, action: string) {
-        this.router.navigate(['/detalle-curso'], { queryParams: { id: id, action: action } });
+    goAlta() {
+        this.router.navigate(['alta']);
+    }
 
+    goModificar(id: number) {
+        this.router.navigate(['modify', id]);
     }
 
     deleteCourse(course: Course) {

@@ -19,7 +19,6 @@ export class CoursesService {
 
 
   public addCourse(course: Course): void {
-    console.log(this._courses);
     this._courses.push(course);
   }
 

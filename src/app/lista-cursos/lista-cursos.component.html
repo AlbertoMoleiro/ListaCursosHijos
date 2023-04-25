@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Lista Grupos</h1>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleCurso" (click)="goDetalle(0,'create')">Agregar</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleCurso" (click)="goAlta()">Agregar</button>
     <table class="table table-striped text-center">
         <thead>
             <tr>
@@ -19,17 +19,19 @@
                 <td class="align-middle">{{course.level}}</td>
                 <td class="align-middle">
                     <button class="m-1 btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleCurso"
-                        (click)="goDetalle(course.id,'modify')">Modificar</button>
+                        (click)="goModificar(course.id)">Modificar</button>
                     <button class="btn btn-danger" (click)="deleteCourse(course)">Borrar</button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="modal fade" id="detalleCurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="detalleCurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <router-outlet></router-outlet>
         </div>
     </div>
 </div>
+
+
